@@ -1,24 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import api from './components/Api'
+import  Navbar  from './components/Navbar';
+import  User  from './components/User';
+import { Content } from './components/Content'
+
+// import  Home from "./components/Home"c
+
+
 
 function App() {
+  const [users  , setUsers ] = useState<any>([ ]  )  
+  const btnHandler = ()  =>{
+     setUsers(Content)
+  
+  
+  }
+
+console.log(users)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <Navbar/>
+      <button className='btn' onClick={ btnHandler }>Get Data</button>
+       <div className="container">
+          {users ? users.map((user : any , i : number)=>(<User
+                     key={i} 
+                     login = {user.login}
+                     avatar_url = { user.avatar_url}
+          
+          />)) : ""}
+       </div>
     </div>
   );
 }
